@@ -1,0 +1,17 @@
+version: "3.1"
+
+stories:
+- story: 인사하기
+  steps:
+  - intent: 인사
+  - action: utter_greet
+
+- story: 작별 인사하기
+  steps:
+  - intent: 작별인사
+  - action: utter_goodbye
+
+- story: 감사 인사하기
+  steps:
+  - intent: 감사인사
+  - action: utter_thanks

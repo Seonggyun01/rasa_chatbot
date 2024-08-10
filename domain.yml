@@ -1,0 +1,19 @@
+version: "3.1"
+
+intents:
+  - 인사
+  - 작별인사
+  - 감사인사
+
+responses:
+  utter_greet:
+    - text: "안녕하세요! 무엇을 도와드릴까요?"
+  utter_goodbye:
+    - text: "안녕히 가세요!"
+  utter_thanks:
+    - text: "감사합니다! 더 도와드릴 일이 있나요?"
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_thanks
