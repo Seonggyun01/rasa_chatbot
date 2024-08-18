@@ -1,31 +1,81 @@
 version: "3.1"
 
 nlu:
-- intent: 인사
+- intent: greet
   examples: |
     - 안녕하세요
     - 안녕
-    - 안녕하십니까
-    - 좋은 아침입니다
-    - 반갑습니다
+    - 좋은 아침이에요
+    - 좋은 저녁이에요
     - 하이
-    - 헬로우
-
-- intent: 작별인사
+    
+- intent: order_drink
   examples: |
-    - 안녕히 계세요
-    - 잘 가
-    - 나중에 봐요
-    - 다음에 봐요
-    - 다시 만나요
-    - 빠이
-    - 잘 있어
-    - 굿바이
+    - [아메리카노](drink) [1](quantity) 잔 주세요
+    - [카페라떼](drink) [2](quantity) 잔 주문할게요
+    - [카푸치노](drink) [1](quantity) 잔 주세요
+    - [아이스 아메리카노](drink) [1](quantity) 잔 추가해 주세요
+    - [라떼](drink) [3](quantity) 잔 주세요
+    - [에스프레소](drink) [두](quantity) 잔 주세요
+    - [카푸치노](drink) [하나](quantity) 주세요
+    - [아메리카노](drink) [한](quantity) 잔 주세요
+    - [라떼](drink) [세](quantity) 잔 주세요
+    - [에스프레소](drink) [네](quantity) 잔 주세요
+    - [아메리카노](drink) [둘](quantity) 잔 주세요
+    - [라떼](drink) [넷](quantity) 잔 주세요
+    - [카푸치노](drink) [셋](quantity) 주세요
+    - [아이스 아메리카노](drink) [다섯](quantity) 잔 주세요
 
-- intent: 감사인사
+- intent: ask_menu
+  examples: |
+    - 메뉴 뭐 있어요?
+    - 메뉴판 보여주세요
+    - 어떤 음료가 있나요?
+    - 오늘의 추천 메뉴는 무엇인가요?
+
+- intent: confirm_order
+  examples: |
+    - 주문 확인해 주세요
+    - 내가 주문한 것 다시 확인해 주세요
+    - 주문한 내용이 맞나요?
+    - 내 주문 내역 알려주세요
+
+- intent: goodbye
   examples: |
     - 감사합니다
-    - 고마워요
-    - 감사해요
-    - 고맙습니다
-    - 정말 고마워요
+    - 안녕히 계세요
+    - 다음에 또 올게요
+    - 잘 가요
+
+- lookup: quantity
+  examples: |
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 한
+    - 두
+    - 세
+    - 네
+    - 다섯
+    - 여섯
+    - 일곱
+    - 여덟
+    - 아홉
+    - 열
+    - 하나
+    - 둘
+    - 셋
+    - 넷
+
+- regex: quantity
+  examples: |
+    - [0-9]+
+    - 한|두|세|네|다섯|여섯|일곱|여덟|아홉|열
+    - 하나|둘|셋|넷

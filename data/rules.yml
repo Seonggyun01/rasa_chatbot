@@ -3,15 +3,26 @@ version: "3.1"
 rules:
 - rule: 인사 규칙
   steps:
-  - intent: 인사
+  - intent: greet
   - action: utter_greet
 
 - rule: 작별 인사 규칙
   steps:
-  - intent: 작별인사
+  - intent: goodbye
   - action: utter_goodbye
 
 - rule: 감사 인사 규칙
   steps:
-  - intent: 감사인사
+  - intent: thank
   - action: utter_thanks
+
+- rule: 음료 주문 규칙
+  steps:
+  - intent: order_drink
+  - action: action_convert_quantity   # 수량 변환 액션
+  - action: utter_confirm_order
+
+- rule: 주문 확인 규칙
+  steps:
+  - intent: confirm_order
+  - action: utter_order_received

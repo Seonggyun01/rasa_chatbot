@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasa Chatbot</title>
+</head>
+<body>
+    <h1>Rasa Chatbot</h1>
+    <div id="chatbox">
+        <div id="messages"></div>
+        <input type="text" id="userInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userMessage = document.getElementById('userInput').value;
+            document.getElementById('messages').innerHTML += `<p>You: ${userMessage}</p>`;
+            
+            // Send the message to Rasa
+            fetch("http://localhost:5005/webhooks/rest/webhook", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ "sender": "user", "message": userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botMessage = data[0]?.text || "No response from bot";
+                document.getElementById('messages').innerHTML += `<p>Bot: ${botMessage}</p>`;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>

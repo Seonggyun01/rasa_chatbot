@@ -1,0 +1,14 @@
+[
+  {
+    "name": "quantity",
+    "pattern": "[0-9]+"
+  },
+  {
+    "name": "quantity",
+    "pattern": "한|두|세|네|다섯"
+  },
+  {
+    "name": "quantity",
+    "pattern": "(\\b1\\b|\\b2\\b|\\b3\\b|\\b4\\b|\\b5\\b|\\b한\\b|\\b두\\b|\\b세\\b|\\b네\\b|\\b다섯\\b)"
+  }
+]

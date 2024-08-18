@@ -1,16 +1,21 @@
 version: "3.1"
-stories:
-- story: 인사 테스트
-  steps:
-  - intent: 인사
-  - action: utter_greet
 
-- story: 작별 인사 테스트
+test_stories:
+- story: 음료 주문 테스트
   steps:
-  - intent: 작별인사
+  - intent: greet
+  - action: utter_greet
+  - intent: order_drink
+  - action: action_convert_quantity  # 수량 변환 액션 추가
+  - action: utter_confirm_order
+  - intent: confirm_order
+  - action: utter_order_received
+  - intent: goodbye
   - action: utter_goodbye
 
-- story: 감사 인사 테스트
+- story: 메뉴 문의 테스트
   steps:
-  - intent: 감사인사
-  - action: utter_thanks
+  - intent: ask_menu
+  - action: utter_ask_menu
+  - intent: goodbye
+  - action: utter_goodbye

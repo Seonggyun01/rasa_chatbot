@@ -1,19 +1,52 @@
 version: "3.1"
 
 intents:
-  - 인사
-  - 작별인사
-  - 감사인사
+  - greet
+  - order_drink
+  - ask_menu
+  - confirm_order
+  - goodbye
+
+entities:
+  - drink
+  - quantity
+
+slots:
+  drink:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: drink
+  quantity:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: quantity
 
 responses:
-  utter_greet:
-    - text: "안녕하세요! 무엇을 도와드릴까요?"
-  utter_goodbye:
-    - text: "안녕히 가세요!"
   utter_thanks:
-    - text: "감사합니다! 더 도와드릴 일이 있나요?"
+    - text: "감사합니다!"
+  utter_greet:
+    - text: "안녕하세요! 카페에 오신 것을 환영합니다. 무엇을 도와드릴까요?"
+
+  utter_ask_menu:
+    - text: "저희 카페의 메뉴는 아메리카노, 카페라떼, 카푸치노 등이 있습니다. 어떤 것을 드시겠어요?"
+
+  utter_confirm_order:
+    - text: "주문하신 음료는 {drink} {quantity}잔입니다. 맞으신가요?"
+
+  utter_goodbye:
+    - text: "감사합니다. 다음에 또 방문해 주세요!"
+
+  utter_order_received:
+    - text: "주문이 완료되었습니다. 잠시만 기다려 주세요!"
 
 actions:
   - utter_greet
+  - utter_ask_menu
+  - utter_confirm_order
   - utter_goodbye
-  - utter_thanks
+  - utter_order_received
+  - action_convert_quantity   # 새로 추가된 사용자 정의 액션
