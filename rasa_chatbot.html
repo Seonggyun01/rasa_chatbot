@@ -4,35 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rasa Chatbot</title>
+    <style>
+        /* 전체 페이지 높이와 기본 설정 */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #D0E7F5;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 채팅 상자와 메시지 영역 설정 */
+        #chatbox {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* 입력창을 하단에 배치 */
+            flex-grow: 1;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #cce7ff;
+            border: 1px solid #a0c4ff;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        /* 메시지를 표시하는 영역의 스타일 설정 */
+        #messages {
+            flex-grow: 1;
+            overflow-y: auto; /* 메시지가 많아지면 스크롤바 표시 */
+            padding: 10px;
+            margin-bottom: 10px; /* 입력창과의 간격 */
+        }
+
+        /* 각 메시지의 스타일 설정 */
+        #messages p {
+            padding: 8px 10px;
+            margin: 5px 0;
+            border-radius: 10px;
+            max-width: 60%;
+        }
+
+        /* 사용자 메시지 스타일 설정 */
+        .user-message {
+            background-color: #c3dafb;
+            align-self: flex-end;
+            color: #000;
+        }
+
+        /* 봇 메시지 스타일 설정 */
+        .bot-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+            color: #000;
+        }
+
+        /* 사용자 입력창과 버튼의 스타일 설정 */
+        #userInput {
+            width: 80%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #a0c4ff;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        /* 전송 버튼의 스타일 설정 */
+        button {
+            width: 15%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #a0c4ff;
+            border-radius: 5px;
+            background-color: #a0c4ff;
+            color: #fff;
+        }
+
+        /* 입력 영역을 화면 하단에 고정 */
+        #inputArea {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #a0c4ff;
+            background-color: #e0f0ff;
+        }
+    </style>
 </head>
 <body>
-    <h1>Rasa Chatbot</h1>
     <div id="chatbox">
+        <!-- 메시지를 표시할 영역 -->
         <div id="messages"></div>
-        <input type="text" id="userInput" placeholder="Type a message...">
-        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div id="inputArea">
+        <!-- 사용자 입력을 위한 텍스트 입력창과 버튼 -->
+        <input type="text" id="userInput" placeholder="메시지를 입력하세요..." onkeydown="handleKeyPress(event)">
+        <button onclick="sendMessage()">전송</button>
     </div>
 
     <script>
+        // 사용자가 메시지를 전송할 때 실행되는 함수
         function sendMessage() {
-            const userMessage = document.getElementById('userInput').value;
-            document.getElementById('messages').innerHTML += `<p>You: ${userMessage}</p>`;
-            
-            // Send the message to Rasa
+            const userInput = document.getElementById('userInput'); // 입력창 요소 가져오기
+            const userMessage = userInput.value; // 입력된 메시지 가져오기
+            if (userMessage.trim() === "") return; // 입력이 비어있다면 함수 종료
+
+            // 사용자의 메시지를 채팅창에 추가
+            document.getElementById('messages').innerHTML += `<p class="user-message">You: ${userMessage}</p>`;
+            userInput.value = "";  // 입력창 비우기
+
+            // Rasa 서버에 메시지를 전송
             fetch("http://localhost:5005/webhooks/rest/webhook", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ "sender": "user", "message": userMessage })
+                body: JSON.stringify({ "sender": "user", "message": userMessage }) // JSON 형식으로 메시지 전송
             })
-            .then(response => response.json())
+            .then(response => response.json()) // 응답을 JSON 형식으로 변환
             .then(data => {
-                const botMessage = data[0]?.text || "No response from bot";
-                document.getElementById('messages').innerHTML += `<p>Bot: ${botMessage}</p>`;
+                // 봇의 응답을 채팅창에 추가
+                const botMessage = data[0]?.text || "No response from bot"; // 봇의 응답이 없을 경우 대비
+                document.getElementById('messages').innerHTML += `<p class="bot-message">Bot: ${botMessage}</p>`;
+                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight; // 메시지 스크롤 자동으로 하단 이동
             })
-            .catch(error => console.error("Error:", error));
+            .catch(error => console.error("Error:", error)); // 에러 발생 시 콘솔에 출력
+        }
+
+        // 엔터키를 눌렀을 때 메시지를 전송하는 함수
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();  // 엔터키가 눌리면 sendMessage 함수 실행
+            }
         }
     </script>
+    
 </body>
 </html>

@@ -11,18 +11,15 @@ rules:
   - intent: goodbye
   - action: utter_goodbye
 
-- rule: 감사 인사 규칙
-  steps:
-  - intent: thank
-  - action: utter_thanks
-
 - rule: 음료 주문 규칙
   steps:
   - intent: order_drink
-  - action: action_convert_quantity   # 수량 변환 액션
-  - action: utter_confirm_order
+  - action: action_handle_multiple_drinks  # 다중 음료 처리 액션 추가
+  - action: action_convert_quantity        # 수량 변환 액션 추가
+  - action: action_confirm_order           # 주문 확인 액션 추가
 
 - rule: 주문 확인 규칙
   steps:
   - intent: confirm_order
   - action: utter_order_received
+  - action: action_reset_slots             # 주문 후 슬롯 초기화

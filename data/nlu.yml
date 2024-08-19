@@ -11,21 +11,27 @@ nlu:
     
 - intent: order_drink
   examples: |
-    - [아메리카노](drink) [1](quantity) 잔 주세요
-    - [카페라떼](drink) [2](quantity) 잔 주문할게요
-    - [카푸치노](drink) [1](quantity) 잔 주세요
-    - [아이스 아메리카노](drink) [1](quantity) 잔 추가해 주세요
-    - [라떼](drink) [3](quantity) 잔 주세요
-    - [에스프레소](drink) [두](quantity) 잔 주세요
-    - [카푸치노](drink) [하나](quantity) 주세요
-    - [아메리카노](drink) [한](quantity) 잔 주세요
-    - [라떼](drink) [세](quantity) 잔 주세요
-    - [에스프레소](drink) [네](quantity) 잔 주세요
-    - [아메리카노](drink) [둘](quantity) 잔 주세요
-    - [라떼](drink) [넷](quantity) 잔 주세요
-    - [카푸치노](drink) [셋](quantity) 주세요
-    - [아이스 아메리카노](drink) [다섯](quantity) 잔 주세요
-
+    - [아메리카노](drink) [2](quantity) 잔과 [카페라떼](drink) [1](quantity) 잔 주세요
+    - [아메리카노](drink) [2](quantity) 개와 [카페라떼](drink) [1](quantity) 개 주세요
+    - [아메리카노](drink) [한](quantity) 잔과 [카페라떼](drink) [한](quantity) 잔 주세요
+    - [아메리카노](drink) [한](quantity) 개와 [카페라떼](drink) [한](quantity) 개 주세요
+    - [카푸치노](drink) [1](quantity) 잔, [에스프레소](drink) [3](quantity) 잔, [아메리카노](drink) [2](quantity) 잔 주세요
+    - [카푸치노](drink) [1](quantity) 개, [에스프레소](drink) [3](quantity) 개, [아메리카노](drink) [2](quantity) 개 주세요
+    - [아이스 아메리카노](drink) [1](quantity) 잔과 [라떼](drink) [2](quantity) 잔, [카페라떼](drink) [3](quantity) 잔 주세요
+    - [아이스 아메리카노](drink) [1](quantity) 개와 [라떼](drink) [2](quantity) 개, [카페라떼](drink) [3](quantity) 개 주세요
+    - [카페라떼](drink) [두](quantity) 잔과 [아메리카노](drink) [세](quantity) 잔, [카푸치노](drink) [한](quantity) 잔 추가해 주세요
+    - [카페라떼](drink) [두](quantity) 개와 [아메리카노](drink) [세](quantity) 개, [카푸치노](drink) [한](quantity) 개 추가해 주세요
+    - [카푸치노](drink) [1](quantity) 잔과 [아메리카노](drink) [1](quantity) 잔, [에스프레소](drink) [2](quantity) 잔 주문할게요
+    - [카푸치노](drink) [1](quantity) 개와 [아메리카노](drink) [1](quantity) 개, [에스프레소](drink) [2](quantity) 개 주문할게요
+    - [라떼](drink) [2](quantity) 잔, [카푸치노](drink) [2](quantity) 잔, [아메리카노](drink) [3](quantity) 잔 주세요
+    - [라떼](drink) [2](quantity) 개, [카푸치노](drink) [2](quantity) 개, [아메리카노](drink) [3](quantity) 개 주세요
+    - [아메리카노](drink) [2](quantity) 잔과 [카페라떼](drink) [1](quantity) 잔, [에스프레소](drink) [4](quantity) 잔 부탁해요
+    - [아메리카노](drink) [2](quantity) 개와 [카페라떼](drink) [1](quantity) 개, [에스프레소](drink) [4](quantity) 개 부탁해요
+    - [에스프레소](drink) [3](quantity) 잔과 [아메리카노](drink) [2](quantity) 잔, [카푸치노](drink) [1](quantity) 잔 추가해 주세요
+    - [에스프레소](drink) [3](quantity) 개와 [아메리카노](drink) [2](quantity) 개, [카푸치노](drink) [1](quantity) 개 추가해 주세요
+    - [아메리카노](drink) [2](quantity) 잔, [카페라떼](drink) [2](quantity) 잔, [아이스 아메리카노](drink) [1](quantity) 잔 주세요
+    - [아메리카노](drink) [2](quantity) 개, [카페라떼](drink) [2](quantity) 개, [아이스 아메리카노](drink) [1](quantity) 개 주세요
+    
 - intent: ask_menu
   examples: |
     - 메뉴 뭐 있어요?

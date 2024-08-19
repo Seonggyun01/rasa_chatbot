@@ -1,21 +1,50 @@
 version: "3.1"
 
 test_stories:
-- story: 음료 주문 테스트
+- story: 사용자 인사 테스트
   steps:
   - intent: greet
   - action: utter_greet
+
+- story: 음료 주문 테스트 (정상 흐름)
+  steps:
   - intent: order_drink
-  - action: action_convert_quantity  # 수량 변환 액션 추가
-  - action: utter_confirm_order
+  - action: action_handle_multiple_drinks  # 다중 음료 처리 액션
+  - action: action_convert_quantity        # 수량 변화 액션 (한글 -> 숫자)
+  - action: action_confirm_order           # 주문 확인 액션
   - intent: confirm_order
   - action: utter_order_received
-  - intent: goodbye
-  - action: utter_goodbye
+  - action: action_reset_slots             # 주문 후 슬롯 초기화
 
 - story: 메뉴 문의 테스트
   steps:
   - intent: ask_menu
   - action: utter_ask_menu
+
+- story: 작별 인사 테스트
+  steps:
   - intent: goodbye
   - action: utter_goodbye
+
+- story: 음료 주문 후 확인 없이 종료 테스트 (예외 시나리오)
+  steps:
+  - intent: order_drink
+  - action: action_handle_multiple_drinks
+  - action: action_convert_quantity
+  - action: action_confirm_order
+  - intent: goodbye  # 사용자가 확인 없이 대화를 종료
+  - action: utter_goodbye
+  - action: action_reset_slots  # 대화 종료 후 슬롯 초기화
+
+- story: 주문 중간에 메뉴 문의 테스트 (예외 시나리오)
+  steps:
+  - intent: order_drink
+  - action: action_handle_multiple_drinks
+  - action: action_convert_quantity
+  - intent: ask_menu  # 사용자가 음료 주문 중 메뉴를 문의
+  - action: utter_ask_menu
+  - intent: confirm_order
+  - action: action_confirm_order
+  - intent: confirm_order
+  - action: utter_order_received
+  - action: action_reset_slots
