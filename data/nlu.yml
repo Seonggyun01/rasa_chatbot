@@ -46,6 +46,15 @@ nlu:
     - 주문한 내용이 맞나요?
     - 내 주문 내역 알려주세요
 
+
+- intent: cancel_order
+  examples: |
+    - 주문 취소해 주세요
+    - 주문을 취소하고 싶어요
+    - 방금 주문한 음료를 취소해 주세요
+    - 다 취소해주세요
+
+
 - intent: goodbye
   examples: |
     - 감사합니다

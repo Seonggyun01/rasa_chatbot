@@ -5,6 +5,7 @@ intents:
   - order_drink
   - ask_menu
   - confirm_order
+  - cancel_order
   - goodbye
 
 entities:
@@ -41,7 +42,9 @@ responses:
     - text: "저희 카페의 메뉴는 아메리카노, 카페라떼, 카푸치노 등이 있습니다. 어떤 것을 드시겠어요?"
 
   utter_confirm_order:
-    - text: "주문 내역을 확인하고 있습니다. 잠시만 기다려 주세요."
+    - text: >
+        주문하신 음료는 다음과 같습니다:
+        {drinks}. 맞으신가요?
 
   utter_goodbye:
     - text: "감사합니다. 다음에 또 방문해 주세요!"
@@ -49,13 +52,18 @@ responses:
   utter_order_received:
     - text: "주문이 완료되었습니다. 잠시만 기다려 주세요!"
 
+  utter_order_canceled:
+    - text: "주문이 취소되었습니다."
+
 actions:
   - utter_greet
   - utter_ask_menu
   - utter_confirm_order
   - utter_goodbye
   - utter_order_received
-  - action_handle_multiple_drinks  # 새로 추가된 사용자 정의 액션
-  - action_confirm_order           # 새로 추가된 사용자 정의 액션
-  - action_reset_slots             # 새로 추가된 사용자 정의 액션
-  - action_convert_quantity        # 수량 변환 액션 추가
+  - utter_order_canceled  # 주문 취소 시 출력
+  - action_handle_multiple_drinks  # 사용자 정의 액션
+  - action_confirm_order           # 사용자 정의 액션
+  - action_reset_slots             # 사용자 정의 액션
+  - action_convert_quantity        # 수량 변환 액션
+  - action_cancel_order            # 주문 취소 액션 추가

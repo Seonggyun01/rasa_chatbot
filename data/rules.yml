@@ -23,3 +23,10 @@ rules:
   - intent: confirm_order
   - action: utter_order_received
   - action: action_reset_slots             # 주문 후 슬롯 초기화
+
+- rule: 주문 취소 규칙
+  steps:
+  - intent: cancel_order
+  - action: action_cancel_order            # 주문 취소 액션 호출
+  - action: utter_order_canceled           # 취소 확인 메시지 출력
+  - action: action_reset_slots             # 슬롯 초기화

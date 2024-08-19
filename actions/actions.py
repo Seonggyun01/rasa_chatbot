@@ -86,3 +86,14 @@ class ActionResetSlots(Action):
             SlotSet("drink", None), 
             SlotSet("quantity", None)
         ]
+
+# 추가된 주문 취소 액션
+class ActionCancelOrder(Action):
+
+    def name(self) -> Text:
+        return "action_cancel_order"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        # drinks 슬롯을 None으로 설정하여 현재 주문을 취소
+        dispatcher.utter_message(text="주문이 취소되었습니다.")
+        return [SlotSet("drinks", None)]

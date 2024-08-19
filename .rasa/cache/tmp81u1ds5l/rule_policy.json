@@ -1,0 +1,29 @@
+{
+  "lookup": {
+    "rules": {
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"greet\"}}]": "utter_greet",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"greet\"}}, {\"prev_action\": {\"action_name\": \"utter_greet\"}, \"user\": {\"intent\": \"greet\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"goodbye\"}}]": "utter_goodbye",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"goodbye\"}}, {\"prev_action\": {\"action_name\": \"utter_goodbye\"}, \"user\": {\"intent\": \"goodbye\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"cancel_order\"}}]": "action_cancel_order",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"cancel_order\"}}, {\"prev_action\": {\"action_name\": \"action_cancel_order\"}, \"user\": {\"intent\": \"cancel_order\"}}]": "utter_order_canceled",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"cancel_order\"}}, {\"prev_action\": {\"action_name\": \"action_cancel_order\"}, \"user\": {\"intent\": \"cancel_order\"}}, {\"prev_action\": {\"action_name\": \"utter_order_canceled\"}, \"user\": {\"intent\": \"cancel_order\"}}]": "action_reset_slots",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"cancel_order\"}}, {\"prev_action\": {\"action_name\": \"action_cancel_order\"}, \"user\": {\"intent\": \"cancel_order\"}}, {\"prev_action\": {\"action_name\": \"utter_order_canceled\"}, \"user\": {\"intent\": \"cancel_order\"}}, {\"prev_action\": {\"action_name\": \"action_reset_slots\"}, \"user\": {\"intent\": \"cancel_order\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"order_drink\"}}]": "action_handle_multiple_drinks",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"order_drink\"}}, {\"prev_action\": {\"action_name\": \"action_handle_multiple_drinks\"}, \"user\": {\"intent\": \"order_drink\"}}]": "action_convert_quantity",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"order_drink\"}}, {\"prev_action\": {\"action_name\": \"action_handle_multiple_drinks\"}, \"user\": {\"intent\": \"order_drink\"}}, {\"prev_action\": {\"action_name\": \"action_convert_quantity\"}, \"user\": {\"intent\": \"order_drink\"}}]": "action_confirm_order",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"order_drink\"}}, {\"prev_action\": {\"action_name\": \"action_handle_multiple_drinks\"}, \"user\": {\"intent\": \"order_drink\"}}, {\"prev_action\": {\"action_name\": \"action_convert_quantity\"}, \"user\": {\"intent\": \"order_drink\"}}, {\"prev_action\": {\"action_name\": \"action_confirm_order\"}, \"user\": {\"intent\": \"order_drink\"}}]": "action_listen",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"confirm_order\"}}]": "utter_order_received",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"confirm_order\"}}, {\"prev_action\": {\"action_name\": \"utter_order_received\"}, \"user\": {\"intent\": \"confirm_order\"}}]": "action_reset_slots",
+      "[{\"prev_action\": {\"action_name\": \"action_listen\"}, \"user\": {\"intent\": \"confirm_order\"}}, {\"prev_action\": {\"action_name\": \"utter_order_received\"}, \"user\": {\"intent\": \"confirm_order\"}}, {\"prev_action\": {\"action_name\": \"action_reset_slots\"}, \"user\": {\"intent\": \"confirm_order\"}}]": "action_listen"
+    },
+    "rule_only_slots": [],
+    "rule_only_loops": [],
+    "rules_for_loop_unhappy_path": {},
+    "rules_not_in_stories": [
+      "predicting default action with intent restart",
+      "predicting default action with intent session_start",
+      "predicting default action with intent back"
+    ]
+  }
+}
